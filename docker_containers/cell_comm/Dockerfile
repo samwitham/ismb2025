@@ -60,10 +60,6 @@ install-all = { depends-on =[
 ], cmd = "echo 'All R packages installed successfully'"}
 EOF
 
-
-
-
-
 # # Create entrypoint script to detect GPU and use correct environment
 # RUN cat <<EOF > /project/entrypoint.sh
 # #!/bin/bash
