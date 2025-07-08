@@ -4,7 +4,7 @@ repos:
     # and before Black, isort, and other formatting tools, as Ruff's fix behavior can
     # output code changes that require reformatting.
     # Ruff version.
-    rev: v0.12.1
+    rev: v0.12.2
     hooks:
       # Run the linter.
       - id: ruff
