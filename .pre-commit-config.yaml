@@ -1,0 +1,104 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    #When running with --fix, Ruff's lint hook should be placed before Ruff's formatter hook,
+    # and before Black, isort, and other formatting tools, as Ruff's fix behavior can
+    # output code changes that require reformatting.
+    # Ruff version.
+    rev: v0.12.1
+    hooks:
+      # Run the linter.
+      - id: ruff
+        types_or: [python]
+        args:
+          [--fix, --exclude, "**/src"] # --ignore, W503,W504,E203,   --exclude,
+          # ^.*\\/src\\/,  --select,
+          # E,
+          # W,
+          # F,
+          # UP,
+          # B,
+          # SIM,
+          # I,
+          # RUF,
+          # N,
+      # Run the formatter.
+      - id: ruff-format
+        types_or: [python]
+  # - repo: https://github.com/pycqa/isort
+  #   rev: 5.13.2
+  #   hooks:
+  #     - id: isort
+  #       args: ["--filter-files", "--profile", "black"]
+  #       files: \.py$
+  # - repo: https://github.com/psf/black
+  #   rev: 24.10.0
+  #   hooks:
+  #     - id: black
+  #       # exclude src directory
+  #       exclude: ^.*\/src\/
+  #       language_version: python3
+  #       args: ["--line-length", "79"]
+
+  # - repo: https://github.com/PyCQA/autoflake
+  #   rev: v2.3.1
+  #   hooks:
+  #     - id: autoflake
+  # - repo: https://github.com/PyCQA/flake8
+  #   rev: 7.1.1 # pick a git hash / tag to point to
+  #   hooks:
+  #     - id: flake8
+  #       args:
+  #         - --ignore=W503
+  #         - --select=W504
+  #         - --ignore=E203
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    # rev: v4.0.0-alpha.8
+    # rev: v3.1.0
+    rev: v4.0.0-alpha.8
+    hooks:
+      - id: prettier
+        exclude: '\.html$|\.ipynb$'
+  - repo: https://github.com/nvuillam/npm-groovy-lint
+    rev: v15.2.0
+    hooks:
+      - id: npm-groovy-lint
+        types: [file]
+        # files: .nf$ # nextflow files
+        files: .(groovy|gvy|gy|gsh|nf)$ # groovy and nextflow files
+        entry: npm-groovy-lint --output txt --fix --fixrules UnnecessaryDoubleQuotation
+      # - id: format-npm-groovy-lint
+      #   types: [file]
+      #   files: \.(groovy|gvy|gy|gsh|nf)$ # groovy and nextflow files
+      # - id: fix-npm-groovy-lint
+      #   types: [file]
+      #   files: \.(groovy|gvy|gy|gsh|nf)$ # groovy and nextflow files
+
+  - repo: https://github.com/lorenzwalthert/precommit
+    rev: v0.4.3.9012
+    hooks:
+      - id: style-files
+        exclude: ^.*\/src\/
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0 # Use the ref you want to point at
+    hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=100000"]
+    # -   id: ...
+
+  # - id: lintr
+  #   args: [--warn_only]
+  #   verbose: true
+  #   exclude: ^.*\/src\/
+  # - id: parsable-R
+  # - repo: https://github.com/nf-core/tools
+  #   rev: v2.1
+  #   hooks:
+  #   - id: nf-core-lint
+  #     args: [--fix]
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v4.2.0
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
+        args: []
