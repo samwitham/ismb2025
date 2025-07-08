@@ -62,7 +62,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/macomics/macomics/${{ matrix.package }} # The image name for your container registry
+          images: ghcr.io/samwitham/ismb2025/${{ matrix.package }} # The image name for your container registry
           # flavor: |
           #   latest=auto
           tags: |
