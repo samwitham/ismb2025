@@ -1,0 +1,39 @@
+*data/
+*log/
+*results/
+**/src/testing/
+**/src/old/
+*doc/
+*software/
+*mermaid/
+*results
+*data
+Node
+
+*.ipynb_checkpoints
+
+# Python
+__pycache__
+__pypackages__
+*.pyc
+.tox/
+.cache/
+
+# Nextflow
+/.nextflow*
+# nextflow*
+*work/
+*.nextflow
+*.nextflow.log*
+*report*.html
+
+# R environment
+*.Rproj.user
+*.Rhistory
+
+# pdm
+*.pdm-python
+pdm.lock
+pyproject.toml
+*__init__.py
+/core_immune_v1.1.qs
