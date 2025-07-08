@@ -67,7 +67,7 @@
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "git config --global --add safe.directory /workspaces/training_courses && cd /workspaces/training_courses && R --no-save -e 'precommit::autoupdate()' && pre-commit install && pre-commit autoupdate"
+  "postCreateCommand": "git config --global --add safe.directory /workspaces/ismb2025 && cd /workspaces/ismb2025 && R --no-save -e 'precommit::autoupdate()' && pre-commit install && pre-commit autoupdate"
   // "postCreateCommand": "uname -a",
   // Configure tool-specific properties.
   // "customizations": {},
