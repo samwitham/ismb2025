@@ -1,0 +1,3 @@
+[submodule "cell-cell_communication/ismb-eccb-2025-tutorial-vt3"]
+	path = cell-cell_communication/ismb-eccb-2025-tutorial-vt3
+	url = https://gitlab.com/sysbiobig/ismb-eccb-2025-tutorial-vt3
