@@ -26,13 +26,13 @@ channels = ["conda-forge", "bioconda"]
 platforms = ["linux-64"]
 
 [tool.pixi.feature.scpram.dependencies]
-python = "3.8.0"
-scanpy = "1.9.3"
+python = "==3.8"
+scanpy = "==1.9.3"
 optuna = "*"
 ipywidgets = "*"
 
 [tool.pixi.feature.scgen.dependencies]
-python = "3.11.0"
+python = "==3.11"
 scanpy = "*"
 scvi-tools = "*"
 optuna = "*"
@@ -42,7 +42,7 @@ ipywidgets = "*"
 scpram = "*"
 
 [tool.pixi.feature.scgen.pypi-dependencies]
-pertpy = "*"
+scgen = "*"
 
 # Feature Definitions for CUDA
 [tool.pixi.feature.scpram]
@@ -89,9 +89,11 @@ WORKDIR /project
 # RUN pixi config set --local run-post-link-scripts insecure
 
 # install git
-RUN apt-get update && apt-get install -y git
-
-RUN apt-get install -y locales apt-utils libcurl4-openssl-dev libxml2-dev make pandoc && \
+RUN apt-get update && apt-get install -y git procps apt-utils libgsl-dev locales libicu-dev libcurl4-openssl-dev \
+    libnode-dev \
+    libxml2-dev \
+    make \
+    pandoc && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
