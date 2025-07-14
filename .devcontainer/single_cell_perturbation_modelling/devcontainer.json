@@ -6,6 +6,14 @@
   "mounts": [
     "source=/home/witham/training_courses,target=/home/witham/training_courses,type=bind,consistency=cached"
   ],
+  "runArgs": [
+    "--gpus",
+    "all",
+    "-e",
+    "NVIDIA_VISIBLE_DEVICES=all",
+    "-e",
+    "NVIDIA_DRIVER_CAPABILITIES=compute,utility"
+  ],
 
   "build": {
     "dockerfile": "Dockerfile"

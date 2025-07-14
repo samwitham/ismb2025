@@ -40,6 +40,7 @@ scvi-tools = "*"
 optuna = "*"
 ipywidgets = "*"
 ipykernel = "*"
+pytorch-gpu = "*"
 
 
 [tool.pixi.feature.scpram.pypi-dependencies]
@@ -57,8 +58,8 @@ pertpy = "*"
 # [tool.pixi.feature.scpram]
 # system-requirements = {cuda = "11.6"}
 
-# [tool.pixi.feature.scgen]
-# system-requirements = {cuda = "12"}
+[tool.pixi.feature.scgen.system-requirements]
+cuda = "12"
 
 [tool.pixi.environments]
 scpram = ["scpram"]
@@ -119,8 +120,10 @@ RUN locale-gen en_US.UTF-8
 #numpy matplotlib seaborn pandas polars biopython
 
 # Install PyPI dependencies from pyproject.toml
-RUN pixi install --manifest-path pyproject.toml --environment scpram
-RUN pixi install --manifest-path pyproject.toml --environment scgen
+RUN pixi install --manifest-path pyproject.toml --environment scpram --verbose
+RUN pixi install --manifest-path pyproject.toml --environment scgen --verbose
+
+
 
 
 # Run specific tasks that you want in the container
