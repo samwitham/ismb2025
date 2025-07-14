@@ -48,6 +48,9 @@ pertpy = "*"
 [tool.pixi.feature.scpram]
 system-requirements = {cuda = "11.6"}
 
+[tool.pixi.feature.scgen]
+system-requirements = {cuda = "12"}
+
 [tool.pixi.environments]
 scpram = ["scpram"]
 scgen = ["scgen"]
