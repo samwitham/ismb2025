@@ -43,8 +43,7 @@ ipykernel = "*"
 
 
 [tool.pixi.feature.scpram.pypi-dependencies]
-scpram = "*"
-torch = { version = "==1.13.1", index = "https://download.pytorch.org/whl/cu113" }
+scpram = { version = "*", index = "https://download.pytorch.org/whl/cu116" }
 
 [tool.pixi.feature.scgen.pypi-dependencies]
 scgen = "*"
