@@ -31,6 +31,7 @@ scanpy = "==1.9.3"
 optuna = "*"
 ipywidgets = "*"
 
+
 [tool.pixi.feature.scgen.dependencies]
 python = "==3.11"
 scanpy = "*"
@@ -38,11 +39,13 @@ scvi-tools = "*"
 optuna = "*"
 ipywidgets = "*"
 
+
 [tool.pixi.feature.scpram.pypi-dependencies]
 scpram = "*"
 
 [tool.pixi.feature.scgen.pypi-dependencies]
 scgen = "*"
+torch = "*"
 
 # Feature Definitions for CUDA
 [tool.pixi.feature.scpram]
