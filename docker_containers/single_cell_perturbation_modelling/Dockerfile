@@ -93,7 +93,7 @@ WORKDIR /project
 # RUN pixi config set --local run-post-link-scripts insecure
 
 # install git
-RUN apt-get update && apt-get install -y git procps apt-utils libgsl-dev locales libicu-dev libcurl4-openssl-dev \
+RUN apt-get update && apt-get install -y git procps locales apt-utils libgsl-dev libicu-dev libcurl4-openssl-dev \
     libnode-dev \
     libxml2-dev \
     make \
@@ -116,8 +116,8 @@ RUN locale-gen en_US.UTF-8
 #numpy matplotlib seaborn pandas polars biopython
 
 # Install PyPI dependencies from pyproject.toml
-RUN pixi install --manifest-path pyproject.toml --environment scpram
 RUN pixi install --manifest-path pyproject.toml --environment scgen
+RUN pixi install --manifest-path pyproject.toml --environment scpram
 
 # Run specific tasks that you want in the container
 RUN pixi run -e scpram install-all
