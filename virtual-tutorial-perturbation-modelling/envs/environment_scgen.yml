@@ -1,0 +1,14 @@
+name: scgen
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - scanpy
+  - scvi-tools
+  - optuna
+  - jupyterlab
+  - ipywidgets
+  - pip
+  - pip:
+      - pertpy
