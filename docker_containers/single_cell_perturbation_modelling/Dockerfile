@@ -44,10 +44,11 @@ ipykernel = "*"
 
 [tool.pixi.feature.scpram.pypi-dependencies]
 scpram = "*"
+torch = { version = "==1.13.1", index = "https://download.pytorch.org/whl/cu113" }
 
 [tool.pixi.feature.scgen.pypi-dependencies]
 scgen = "*"
-torch = "*"
+torch = { version = ">=2.5.1", index = "https://download.pytorch.org/whl/cu124" }
 pertpy = "*"
 
 # # Feature Definitions for CUDA
