@@ -26,13 +26,13 @@ channels = ["conda-forge", "bioconda"]
 platforms = ["linux-64"]
 
 [tool.pixi.feature.scpram.dependencies]
-python = "3.8.*"
-scanpy = "*"
+python = "3.8.0"
+scanpy = "1.9.3"
 optuna = "*"
 ipywidgets = "*"
 
 [tool.pixi.feature.scgen.dependencies]
-python = "3.11.*"
+python = "3.11.0"
 scanpy = "*"
 scvi-tools = "*"
 optuna = "*"
@@ -43,6 +43,10 @@ scpram = "*"
 
 [tool.pixi.feature.scgen.pypi-dependencies]
 pertpy = "*"
+
+# Feature Definitions for CUDA
+[tool.pixi.feature.scpram]
+system-requirements = {cuda = "11.6"}
 
 [tool.pixi.environments]
 scpram = ["scpram"]
