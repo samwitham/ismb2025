@@ -43,7 +43,7 @@ ipykernel = "*"
 
 
 [tool.pixi.feature.scpram.pypi-dependencies]
-scpram = { version = "*", index = "https://download.pytorch.org/whl/cu116" }
+scpram = { version = "*", extra-index-url = "https://download.pytorch.org/whl/cu116" }
 
 [tool.pixi.feature.scgen.pypi-dependencies]
 scgen = "*"
@@ -116,8 +116,9 @@ RUN locale-gen en_US.UTF-8
 #numpy matplotlib seaborn pandas polars biopython
 
 # Install PyPI dependencies from pyproject.toml
-RUN pixi install --manifest-path pyproject.toml --environment scgen
 RUN pixi install --manifest-path pyproject.toml --environment scpram
+RUN pixi install --manifest-path pyproject.toml --environment scgen
+
 
 # Run specific tasks that you want in the container
 RUN pixi run -e scpram install-all
