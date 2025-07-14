@@ -30,6 +30,7 @@ python = "==3.8"
 scanpy = "==1.9.3"
 optuna = "*"
 ipywidgets = "*"
+ipykernel = "*"
 
 
 [tool.pixi.feature.scgen.dependencies]
@@ -38,6 +39,7 @@ scanpy = "*"
 scvi-tools = "*"
 optuna = "*"
 ipywidgets = "*"
+ipykernel = "*"
 
 
 [tool.pixi.feature.scpram.pypi-dependencies]
@@ -47,12 +49,12 @@ scpram = "*"
 scgen = "*"
 torch = "*"
 
-# Feature Definitions for CUDA
-[tool.pixi.feature.scpram]
-system-requirements = {cuda = "11.6"}
+# # Feature Definitions for CUDA
+# [tool.pixi.feature.scpram]
+# system-requirements = {cuda = "11.6"}
 
-[tool.pixi.feature.scgen]
-system-requirements = {cuda = "12"}
+# [tool.pixi.feature.scgen]
+# system-requirements = {cuda = "12"}
 
 [tool.pixi.environments]
 scpram = ["scpram"]
@@ -60,10 +62,8 @@ scgen = ["scgen"]
 
 [tool.pixi.tasks]
 install-kernel = "python -m ipykernel install --user --name pixi-env --display-name 'Pixi Env'"
-install-rkernel = "R -e 'IRkernel::installspec()'"
 install-all = { depends-on =[
-    "install-kernel",
-    "install-rkernel"
+    "install-kernel"
 ], cmd = "echo 'All packages installed successfully'"}
 EOF
 
