@@ -43,7 +43,10 @@ ipykernel = "*"
 
 
 [tool.pixi.feature.scpram.pypi-dependencies]
-scpram = { version = "*", extra-index-url = "https://download.pytorch.org/whl/cu116" }
+scpram = "*"
+
+[tool.pixi.feature.scpram.pypi-options]
+extra-index-urls = ["https://download.pytorch.org/whl/cu116"]
 
 [tool.pixi.feature.scgen.pypi-dependencies]
 scgen = "*"
