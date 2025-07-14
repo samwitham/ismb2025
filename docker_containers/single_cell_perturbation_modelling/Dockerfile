@@ -48,6 +48,7 @@ scpram = "*"
 [tool.pixi.feature.scgen.pypi-dependencies]
 scgen = "*"
 torch = "*"
+pertpy = "*"
 
 # # Feature Definitions for CUDA
 # [tool.pixi.feature.scpram]
