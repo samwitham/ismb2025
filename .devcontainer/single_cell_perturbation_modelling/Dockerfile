@@ -10,10 +10,10 @@ RUN apt install -y git
 
 # # Ensure the installed binary is on the `PATH`
 # ENV PATH="/root/.local/bin/:$PATH"
-RUN pixi add ipykernel ruff pre-commit
+# RUN pixi add ipykernel ruff pre-commit
 
 # RUN uv pip install jupyter-client --system
-RUN pixi global install jupyter_client
+RUN pixi global install jupyter_client ruff pre-commit ipykernel
 
 # Generate locale to fix locale warnings
 RUN locale-gen en_US.UTF-8 
