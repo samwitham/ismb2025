@@ -73,12 +73,11 @@ repos:
       #   types: [file]
       #   files: \.(groovy|gvy|gy|gsh|nf)$ # groovy and nextflow files
 
-  - repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.4.3.9012
-    hooks:
-      - id: style-files
-        exclude: ^.*\/src\/
-
+  # - repo: https://github.com/lorenzwalthert/precommit
+  #   rev: v0.4.3.9012
+  #   hooks:
+  #     - id: style-files
+  #       exclude: ^.*\/src\/
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0 # Use the ref you want to point at
     hooks:

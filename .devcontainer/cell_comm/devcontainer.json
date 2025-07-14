@@ -2,34 +2,10 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
   "name": "cell_comm",
-  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  // "image": "mcr.microsoft.com/devcontainers/base:jammy",
-  // "dockerComposeFile": [
-  //   "../../docker-compose.yml"
-  // ],
-  // "service": "plotting",
-  // "workspaceFolder": "/home/macomics",
-  // "shutdownAction": "none",
   "mounts": [
     "source=/home/witham/training_courses,target=/home/witham/training_courses,type=bind,consistency=cached"
   ],
-  // add mount points if they exist
-  // "mounts": [
-  //   {
-  //     "source": "/home/macomics",
-  //     "target": "/home/macomics",
-  //     "type": "bind",
-  //     "consistency": "cached",
-  //     "if": "fileExists('/home/macomics')"
-  //   },
-  //   {
-  //     "source": "/mnt/d/Macomics_SW",
-  //     "target": "/mnt/d/Macomics_SW",
-  //     "type": "bind",
-  //     "consistency": "cached",
-  //     "if": "fileExists('/mnt/d/Macomics_SW')"
-  //   }
-  // ],
+
   "build": {
     "dockerfile": "Dockerfile"
   },
