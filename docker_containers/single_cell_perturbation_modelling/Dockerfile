@@ -1,0 +1,119 @@
+# FROM rocker/r2u:latest
+FROM ghcr.io/prefix-dev/pixi:latest
+LABEL org.opencontainers.image.source=https://github.com/samwitham/ismb2025
+LABEL org.opencontainers.image.title=single_cell_perturbation_modelling
+LABEL org.opencontainers.image.version=0.1
+LABEL org.opencontainers.image.description="This is an image for running single cell perturbation modelling"
+
+# ARG PYTHON_VERSION=3.10
+# make project dir
+RUN mkdir /project
+
+# create pyproject.toml file with CUDA support
+RUN cat <<EOF > /project/pyproject.toml
+[project]
+name = "single_cell_perturbation_modelling"
+version = "0.1.0"
+description = "Default template for Pixi package"
+authors = [
+    {name = "samwitham"},
+]
+readme = "README.md"
+license = {text = "MIT"}
+
+[tool.pixi.project]
+channels = ["conda-forge", "bioconda"]
+platforms = ["linux-64"]
+
+[tool.pixi.feature.scpram.dependencies]
+python = "3.8.*"
+scanpy = "*"
+optuna = "*"
+ipywidgets = "*"
+
+[tool.pixi.feature.scgen.dependencies]
+python = "3.11.*"
+scanpy = "*"
+scvi-tools = "*"
+optuna = "*"
+ipywidgets = "*"
+
+[tool.pixi.feature.scpram.pypi-dependencies]
+scpram = "*"
+
+[tool.pixi.feature.scgen.pypi-dependencies]
+pertpy = "*"
+
+[tool.pixi.environments]
+scpram = ["scpram"]
+scgen = ["scgen"]
+
+[tool.pixi.tasks]
+install-kernel = "python -m ipykernel install --user --name pixi-env --display-name 'Pixi Env'"
+install-rkernel = "R -e 'IRkernel::installspec()'"
+install-all = { depends-on =[
+    "install-kernel",
+    "install-rkernel"
+], cmd = "echo 'All packages installed successfully'"}
+EOF
+
+# # Create entrypoint script to detect GPU and use correct environment
+# RUN cat <<EOF > /project/entrypoint.sh
+# #!/bin/bash
+# # Check if NVIDIA GPU is available
+# if command -v nvidia-smi &> /dev/null; then
+#     # Use CUDA environment if GPU is available
+#     pixi shell -e cuda
+# else
+#     # Use default environment otherwise
+#     pixi shell
+# fi
+# exec "\$@"
+# EOF
+
+# RUN chmod 700 /project/entrypoint.sh
+
+WORKDIR /project
+
+# add default channels pixi config set default-channels '["conda-forge", "bioconda"]'
+# RUN pixi config set default-channels '["conda-forge", "bioconda"]'
+
+# Enable post-link scripts for packages that need them (like Bioconductor packages)
+# RUN pixi config set --local run-post-link-scripts insecure
+
+# install git
+RUN apt-get update && apt-get install -y git
+
+RUN apt-get install -y locales apt-utils libcurl4-openssl-dev libxml2-dev make pandoc && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Generate locale to fix locale warnings
+RUN locale-gen en_US.UTF-8 
+
+# install cuda
+# RUN pixi install --manifest-path pyproject.toml --environment cuda
+#&& \
+# update-locale LANG=en_US.UTF-8
+# # Set locale environment variables
+# ENV LANG=en_US.UTF-8
+# ENV LC_ALL=en_US.UTF-8
+# ENV LANGUAGE=en_US.UTF-8
+
+#numpy matplotlib seaborn pandas polars biopython
+
+# Install PyPI dependencies from pyproject.toml
+RUN pixi install --manifest-path pyproject.toml --environment scpram
+RUN pixi install --manifest-path pyproject.toml --environment scgen
+
+# Run specific tasks that you want in the container
+RUN pixi run -e scpram install-all
+RUN pixi run -e scgen install-all
+
+# Place executables in the environment at the front of the path
+# ENV PATH="/project/.pixi/envs/cuda/bin:/project/.pixi/envs/default/bin:$PATH"
+ENV PATH="/project/.pixi/envs/scpram/bin:/project/.pixi/envs/scgen/bin:$PATH"
+
+# ARG GITHUB_PAT
+# # set R env
+# ENV GITHUB_PAT=$GITHUB_PAT

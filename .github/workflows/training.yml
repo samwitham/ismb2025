@@ -29,6 +29,7 @@ jobs:
           list-files: "json"
           filters: |
             cell_comm: docker_containers/cell_comm/Dockerfile
+            single_cell_perturbation_modelling: docker_containers/single_cell_perturbation_modelling/Dockerfile
 
   build-and-push-image:
     # needs: login
