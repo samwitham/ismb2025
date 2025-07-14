@@ -9,6 +9,8 @@ LABEL org.opencontainers.image.description="This is an image for running single 
 # make project dir
 RUN mkdir /project
 
+ENV CONDA_OVERRIDE_CUDA=12.0
+
 # create pyproject.toml file with CUDA support
 RUN cat <<EOF > /project/pyproject.toml
 [project]
@@ -41,7 +43,7 @@ optuna = "*"
 ipywidgets = "*"
 ipykernel = "*"
 pytorch-gpu = "*"
-
+pertpy = "*"
 
 [tool.pixi.feature.scpram.pypi-dependencies]
 scpram = "*"
@@ -51,8 +53,7 @@ extra-index-urls = ["https://download.pytorch.org/whl/cu116"]
 
 [tool.pixi.feature.scgen.pypi-dependencies]
 scgen = "*"
-torch = { version = ">=2.5.1", index = "https://download.pytorch.org/whl/cu124" }
-pertpy = "*"
+# pertpy = "*"
 
 # # Feature Definitions for CUDA
 # [tool.pixi.feature.scpram]
@@ -119,9 +120,19 @@ RUN locale-gen en_US.UTF-8
 
 #numpy matplotlib seaborn pandas polars biopython
 
+# # Create a cache directory for Pixi
+# RUN mkdir -p /tmp/pixi-cache
+
+# # Use BuildKit cache for Pixi installs
+# RUN --mount=type=cache,target=/tmp/pixi-cache \
+#     PIXI_CACHE_DIR=/tmp/pixi-cache pixi install --manifest-path pyproject.toml --environment scpram --verbose
+# RUN --mount=type=cache,target=/tmp/pixi-cache \
+#     PIXI_CACHE_DIR=/tmp/pixi-cache pixi install --manifest-path pyproject.toml --environment scgen --verbose
+
 # Install PyPI dependencies from pyproject.toml
-RUN pixi install --manifest-path pyproject.toml --environment scpram --verbose
 RUN pixi install --manifest-path pyproject.toml --environment scgen --verbose
+RUN pixi install --manifest-path pyproject.toml --environment scpram --verbose
+
 
 
 
