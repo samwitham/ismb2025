@@ -8,6 +8,7 @@
 *mermaid/
 *results
 *data
+*.git_renamed
 Node
 
 *.ipynb_checkpoints
