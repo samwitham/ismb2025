@@ -49,6 +49,8 @@ install-rkernel = "R -e 'IRkernel::installspec()'"
 install-scseqcomm = "R -e 'remotes::install_gitlab(\"sysbiobig/scseqcomm\")'"
 install-add2ggplot = "R -e 'pak::pkg_install(\"github::JiaxiangBU/add2ggplot\")'"
 install-crosstalker = "R -e 'pak::pkg_install(\"github::CostaLab/CrossTalkeR\")'"
+install-mrraps = "R -e 'pak::pkg_install(\"github::qingyuanzhao/mr.raps\")'"
+install_mr_presso = "R -e 'pak::pkg_install(\"github::rondolab/MR-PRESSO\")'"
 install-twosamplemr = "R -e 'pak::pkg_install(\"github::MRCIEU/TwoSampleMR\")'"
 install-mrinstruments = "R -e 'pak::pkg_install(\"github::MRCIEU/MRInstruments\")'"
 install-gwasglue = "R -e 'pak::pkg_install(\"github::mrcieu/gwasglue\")'"
@@ -60,6 +62,8 @@ install-all = { depends-on =[
     "install-scseqcomm",
     "install-add2ggplot",
     "install-crosstalker",
+    "install-mrraps",
+    "install_mr_presso",
     "install-twosamplemr",
     "install-mrinstruments",
     "install-gwasglue"
