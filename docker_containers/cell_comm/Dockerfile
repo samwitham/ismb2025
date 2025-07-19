@@ -59,7 +59,10 @@ install-all = { depends-on =[
     "install-rkernel",
     "install-scseqcomm",
     "install-add2ggplot",
-    "install-crosstalker"
+    "install-crosstalker",
+    "install-twosamplemr",
+    "install-mrinstruments",
+    "install-gwasglue"
 ], cmd = "echo 'All R packages installed successfully'"}
 EOF
 
@@ -121,6 +124,9 @@ RUN locale-gen en_US.UTF-8
 # add R dependencies using pixi add
 RUN pixi add r-devtools r-biocmanager r-remotes r-base r-roxygen2 r-testthat r-usethis r-argparser r-ggplot2 r-data.table r-svglite r-rcpp r-future bioconductor-edger r-dplyr r-matrix r-purrr r-box r-seurat r-bit64 r-openxlsx r-ape r-pheatmap r-ggpubr r-qs r-markdown r-ggnewscale r-emmeans r-multcomp r-readxl r-progress r-ggalt r-ggprism r-hdf5r r-pak bioconductor-geoquery bioconductor-biomart r-essentials mmseqs2 ipykernel r-git2r r-languageserver r-precommit r-rzmq r-irkernel r-irdisplay dvc "pygraphviz==1.14" mudata umap-learn "scanpy==1.10.4" bioconductor-gosemsim r-ggfun r-ggplotify bioconductor-org.hs.eg.db bioconductor-org.Mm.eg.db r-scico r-psych r-chorddiag r-domc r-gtools r-tictoc bioconductor-mast r-bigmemory r-bh r-effsize r-doparallel r-dorng bioconductor-clusterprofiler r-rcurl bioconductor-omnipathr r-knitr r-ggalluvial r-dt r-scales r-htmltools r-factoextra r-colorblindness bioconductor-complexheatmap r-extrafont r-ggridges r-ggnewscale r-gtools r-ggsci r-rstatix r-qpdf bioconductor-enhancedvolcano r-patchwork r-magick r-zeallot r-rcolorbrewer r-magrittr bioconductor-fgsea r-cellchat r-ieugwasr bioconductor-variantannotation
 #numpy matplotlib seaborn pandas polars biopython
+ARG GITHUB_PAT
+# set env
+ENV GITHUB_PAT=$GITHUB_PAT
 
 # Install PyPI dependencies from pyproject.toml
 RUN pixi install
@@ -132,6 +138,3 @@ RUN pixi run install-all
 # ENV PATH="/project/.pixi/envs/cuda/bin:/project/.pixi/envs/default/bin:$PATH"
 ENV PATH="/project/.pixi/envs/default/bin:$PATH"
 
-# ARG GITHUB_PAT
-# # set R env
-# ENV GITHUB_PAT=$GITHUB_PAT
