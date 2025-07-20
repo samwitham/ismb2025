@@ -45,6 +45,17 @@ ipykernel = "*"
 pytorch-gpu = "*"
 pertpy = "*"
 
+[[tool.pixi.feature.ai_lcm.dependencies]]
+accelerate = "*"
+captum = "*"
+scanpy = "*"
+loguru = "*"
+transformers = "==4.30.2"
+pytorch-gpu = "*"
+[tool.pixi.feature.ai_lcm.pypi-dependencies]
+torchkeras = "*"
+
+
 [tool.pixi.feature.scpram.pypi-dependencies]
 scpram = "*"
 
@@ -62,9 +73,13 @@ scgen = "*"
 [tool.pixi.feature.scgen.system-requirements]
 cuda = "12"
 
+[tool.pixi.feature.ai_lcm.system-requirements]
+cuda = "12"
+
 [tool.pixi.environments]
 scpram = ["scpram"]
 scgen = ["scgen"]
+ai_lcm = ["ai_lcm"]
 
 [tool.pixi.tasks]
 install-kernel = "python -m ipykernel install --user --name pixi-env --display-name 'Pixi Env'"
@@ -132,6 +147,7 @@ RUN locale-gen en_US.UTF-8
 # Install PyPI dependencies from pyproject.toml
 RUN pixi install --manifest-path pyproject.toml --environment scgen --verbose
 RUN pixi install --manifest-path pyproject.toml --environment scpram --verbose
+RUN pixi install --manifest-path pyproject.toml --environment ai_lcm --verbose
 
 
 
@@ -140,6 +156,7 @@ RUN pixi install --manifest-path pyproject.toml --environment scpram --verbose
 # Run specific tasks that you want in the container
 RUN pixi run -e scpram install-all
 RUN pixi run -e scgen install-all
+RUN pixi run -e ai_lcm install-all
 
 # Place executables in the environment at the front of the path
 # ENV PATH="/project/.pixi/envs/cuda/bin:/project/.pixi/envs/default/bin:$PATH"
