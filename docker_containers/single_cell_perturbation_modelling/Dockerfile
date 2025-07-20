@@ -58,12 +58,31 @@ pytorch-gpu = "*"
 pytorch_geometric = "*"
 dcor = "*"
 scikit-misc = "*"
+anndata = "*"
+captum = "*"
+h5py = "*"
+ipython = "*"
+loguru = "*"
+matplotlib = "*"
+numpy = "*"
+packaging = "*"
+pandas = "*"
+psutil = "*"
+pyyaml = "*"
+scanpy = "*"
+scikit-learn = "*"
+scipy = "*"
+seaborn = "*"
+tqdm = "*"
+numexpr = "*"
+transformers = "*"
 
 [tool.pixi.feature.ailcm.pypi-dependencies]
 torchkeras = "*"
 cell-gears = "*"
-scmulan = {git = "https://github.com/SuperBianC/scMulan.git", branch = "main"}
 scperturb = "*"
+dataset = "*"
+tables = "*"
 
 [tool.pixi.feature.scpram.pypi-dependencies]
 scpram = "*"
@@ -163,6 +182,12 @@ RUN pixi install --manifest-path pyproject.toml --environment ailcm --verbose
 RUN pixi run -e scpram install-all
 RUN pixi run -e scgen install-all
 RUN pixi run -e ailcm install-all
+
+# Manually clone scMulan (no pip install needed)
+RUN git clone https://github.com/SuperBianC/scMulan.git /project/scMulan
+
+# Optionally: add scMulan to PYTHONPATH for import
+ENV PYTHONPATH="/project/scMulan:$PYTHONPATH"
 
 # Place executables in the environment at the front of the path
 # ENV PATH="/project/.pixi/envs/cuda/bin:/project/.pixi/envs/default/bin:$PATH"
