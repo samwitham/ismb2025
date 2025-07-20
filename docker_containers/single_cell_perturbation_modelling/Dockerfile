@@ -46,7 +46,7 @@ pytorch-gpu = "*"
 pertpy = "*"
 
 [tool.pixi.feature.ailcm.dependencies]
-python = "==3.11"
+python = "==3.10"
 ipywidgets = "*"
 ipykernel = "*"
 accelerate = "*"
@@ -153,6 +153,11 @@ RUN pixi install --manifest-path pyproject.toml --environment scgen --verbose
 RUN pixi install --manifest-path pyproject.toml --environment scpram --verbose
 RUN pixi install --manifest-path pyproject.toml --environment ailcm --verbose
 
+# Install scMulan in the ailcm environment
+RUN git clone https://github.com/SuperBianC/scMulan.git /tmp/scMulan && \
+    pixi run -e ailcm python -m pip install --upgrade pip && \
+    pixi run -e ailcm pip install -r /tmp/scMulan/requirements.txt && \
+    pixi run -e ailcm pip install /tmp/scMulan
 
 
 
