@@ -47,6 +47,8 @@ pertpy = "*"
 
 [tool.pixi.feature.ailcm.dependencies]
 python = "==3.11"
+ipywidgets = "*"
+ipykernel = "*"
 accelerate = "*"
 captum = "*"
 scanpy = "*"
