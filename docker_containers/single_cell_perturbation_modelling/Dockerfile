@@ -55,12 +55,15 @@ scanpy = "*"
 loguru = "*"
 transformers = "==4.30.2"
 pytorch-gpu = "*"
+pytorch_geometric = "*"
+dcor = "*"
+scikit-misc = "*"
 
 [tool.pixi.feature.ailcm.pypi-dependencies]
 torchkeras = "*"
 cell-gears = "*"
 scmulan = {git = "https://github.com/SuperBianC/scMulan.git", branch = "main"}
-
+scperturb = "*"
 
 [tool.pixi.feature.scpram.pypi-dependencies]
 scpram = "*"
