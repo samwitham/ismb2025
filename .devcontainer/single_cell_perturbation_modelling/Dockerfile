@@ -1,6 +1,6 @@
 # This is the image we are going add micromamba to:
 # only seems to work when you specify :main tag rather than :latest
-FROM ghcr.io/samwitham/ismb2025/single_cell_perturbation_modelling:sha-8a11a7e
+FROM ghcr.io/samwitham/ismb2025/single_cell_perturbation_modelling:sha-4c491d8
 
 # FROM seurat_plotting:latest
 
