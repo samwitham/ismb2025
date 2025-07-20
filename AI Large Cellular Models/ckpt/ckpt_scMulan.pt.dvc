@@ -1,0 +1,5 @@
+outs:
+- md5: f9ad005fd99ff93092f4aedaf16192e5
+  size: 225443840
+  hash: md5
+  path: ckpt_scMulan.pt
