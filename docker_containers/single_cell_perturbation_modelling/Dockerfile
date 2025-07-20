@@ -58,6 +58,7 @@ pytorch-gpu = "*"
 
 [tool.pixi.feature.ailcm.pypi-dependencies]
 torchkeras = "*"
+cell-gears = "*"
 
 
 [tool.pixi.feature.scpram.pypi-dependencies]
