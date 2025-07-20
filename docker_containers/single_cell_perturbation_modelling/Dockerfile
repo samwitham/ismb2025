@@ -45,13 +45,15 @@ ipykernel = "*"
 pytorch-gpu = "*"
 pertpy = "*"
 
-[[tool.pixi.feature.ai_lcm.dependencies]]
+[tool.pixi.feature.ai_lcm.dependencies]
+python = "==3.11"
 accelerate = "*"
 captum = "*"
 scanpy = "*"
 loguru = "*"
 transformers = "==4.30.2"
 pytorch-gpu = "*"
+
 [tool.pixi.feature.ai_lcm.pypi-dependencies]
 torchkeras = "*"
 
